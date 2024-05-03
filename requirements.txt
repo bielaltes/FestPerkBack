@@ -1,0 +1,13 @@
+Django==5.0
+channels~=3.0
+bcrypt
+django-cors-headers
+django-cors-middleware
+psycopg2
+channels-redis
+bcrypt
+pyotp
+PyJWT
+requests_oauthlib
+requests
+python-dotenv
