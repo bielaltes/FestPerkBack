@@ -1,4 +1,3 @@
-version: '3'
 services:
 
   db_postgres:
@@ -19,9 +18,19 @@ services:
       - "8000:8000"
     depends_on:
       - db_postgres
+    volumes:
+      - back_workdir:/app
     networks:
        - festperknet
 
 networks:
   festperknet:
     driver: bridge
+
+volumes:
+  back_workdir:
+    driver: local
+    driver_opts:
+      type: none
+      device: .
+      o: bind
