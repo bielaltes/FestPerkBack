@@ -33,15 +33,6 @@ ALLOWED_HOSTS = ['*', 'localhost', 'localhost:3000','localhost:8000', 'http://12
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-CORS_ALLOWED_ORIGINS = [
-    "localhost",
-    "localhost:3000",
-    "localhost:8000",
-    "https://festperkback.onrender.com",
-    'festperkback.onrender.com',
-    # Add other trusted origins here if necessary
-]
-
 # Application definition
 
 INSTALLED_APPS = [
