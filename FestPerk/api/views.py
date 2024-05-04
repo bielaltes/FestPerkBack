@@ -2,7 +2,6 @@ from rest_framework.response import Response
 from rest_framework import viewsets, status
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
-from django.views.decorators.csrf import csrf_exempt
 from .models import Travel, City, Club, Party, Participant, Traveler
 from .serializers import (
     TravelSerializer,
@@ -18,12 +17,10 @@ class TravelViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = TravelSerializer
 
-    @csrf_exempt
     def get_queryset(self):
         username = self.request.user.username
         return Travel.objects.filter(traveler__user__username=username)
     
-    @csrf_exempt
     def create(self, request):
         body = request.data
         required_fields = ["city", "ini_date", "end_date"]
@@ -51,7 +48,6 @@ class TravelViewSet(viewsets.ModelViewSet):
 class CreateTravelView(APIView):
     permission_classes = [IsAuthenticated]
 
-    @csrf_exempt
     def post(self, request, format=None):
         body = request.data
         required_fields = ["city", "ini_date", "end_date"]
