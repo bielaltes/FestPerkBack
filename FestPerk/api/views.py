@@ -1,20 +1,19 @@
 from rest_framework import viewsets
-from .models import Travels, City, Local, Party, Participant
+from .models import Travel, City, Club, Party, Participant
 from .serializers import (
-    TravelsSerializer,
+    TravelSerializer,
     CitySerializer,
-    LocalSerializer,
+    ClubSerializer,
     PartySerializer,
     ParticipantSerializer,
 )
 
 from rest_framework.permissions import IsAuthenticated
 
-class TravelsViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    
-    queryset = Travels.objects.all()
-    serializer_class = TravelsSerializer
+
+class TravelViewSet(viewsets.ModelViewSet):
+    queryset = Travel.objects.all()
+    serializer_class = TravelSerializer
 
 
 class CityViewSet(viewsets.ModelViewSet):
@@ -22,9 +21,9 @@ class CityViewSet(viewsets.ModelViewSet):
     serializer_class = CitySerializer
 
 
-class LocalViewSet(viewsets.ModelViewSet):
-    queryset = Local.objects.all()
-    serializer_class = LocalSerializer
+class ClubViewSet(viewsets.ModelViewSet):
+    queryset = Club.objects.all()
+    serializer_class = ClubSerializer
 
 
 class PartyViewSet(viewsets.ModelViewSet):

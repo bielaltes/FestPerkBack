@@ -1,7 +1,7 @@
-def create_locals():
-    from api.models import Local, City
+def create_clubs():
+    from api.models import Club, City
 
-    locals_to_create = [
+    clubs_to_create = [
         {"name": "Razzmatazz", "city_name": "Barcelona"},
         {"name": "Apolo", "city_name": "Barcelona"},
         {"name": "Coyote", "city_name": "Barcelona"},
@@ -13,16 +13,16 @@ def create_locals():
         {"name": "ParisBar", "city_name": "Paris"},
     ]
 
-    locals = []
+    clubs = []
     cities = City.objects.all()
     cities_dict = {city.name: city for city in cities}
-    for local in locals_to_create:
-        locals.append(Local(name=local["name"], city=cities_dict[local["city_name"]]))
-    Local.objects.bulk_create(locals)
+    for club in clubs_to_create:
+        clubs.append(Club(name=club["name"], city=cities_dict[club["city_name"]]))
+    Club.objects.bulk_create(clubs)
 
 
 if __name__ == "__main__":
     from api.scripts.django_setup import django_setup
 
     django_setup()
-    create_locals()
+    create_clubs()
