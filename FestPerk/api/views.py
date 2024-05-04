@@ -14,15 +14,16 @@ from .serializers import (
 
 from rest_framework.permissions import IsAuthenticated
 
-@csrf_exempt
 class TravelViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = TravelSerializer
 
+    @csrf_exempt
     def get_queryset(self):
         username = self.request.user.username
         return Travel.objects.filter(traveler__user__username=username)
     
+    @csrf_exempt
     def create(self, request):
         body = request.data
         required_fields = ["city", "ini_date", "end_date"]
