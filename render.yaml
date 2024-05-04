@@ -11,7 +11,7 @@ services:
     plan: starter
     ports:
       - 5432  # Expose default PostgreSQL port
-    type: docker
+    type: web
     volume:
       name: database_postgre_data
       mountPath: /var/lib/postgresql/data
