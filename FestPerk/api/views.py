@@ -8,6 +8,8 @@ from .serializers import (
     ParticipantSerializer,
 )
 
+from rest_framework.permissions import IsAuthenticated
+
 
 class TravelViewSet(viewsets.ModelViewSet):
     queryset = Travel.objects.all()
