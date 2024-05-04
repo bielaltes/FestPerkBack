@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 
-class Traveller(models.Model):
+class Traveler(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     age = models.PositiveIntegerField(
         default=0,
@@ -32,12 +32,12 @@ class Local(models.Model):
 class Travels(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     city = models.ForeignKey(City, on_delete=models.PROTECT)
-    user = models.ForeignKey(Traveller, on_delete=models.CASCADE)
+    traveler = models.ForeignKey(Traveler, on_delete=models.CASCADE)
     ini_date = models.DateField()
     end_date = models.DateField()
 
     class Meta:
-        unique_together = ("user", "ini_date")
+        unique_together = ("traveler", "ini_date")
 
 
 class Party(models.Model):
@@ -49,7 +49,7 @@ class Party(models.Model):
 class Participant(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     party = models.ForeignKey(Party, on_delete=models.PROTECT)
-    user = models.ForeignKey(Traveller, on_delete=models.CASCADE)
+    traveler = models.ForeignKey(Traveler, on_delete=models.CASCADE)
 
     class Meta:
-        unique_together = ("party", "user")
+        unique_together = ("party", "traveler")

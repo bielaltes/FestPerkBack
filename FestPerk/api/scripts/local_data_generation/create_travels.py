@@ -1,16 +1,16 @@
 def create_travels():
     import random
     from django.utils import timezone
-    from api.models import City, Traveller, Travels
+    from api.models import City, Traveler, Travels
 
     cities = City.objects.all()
-    users = Traveller.objects.all()
+    travelers = Traveler.objects.all()
     travels = []
-    for user in users:
+    for traveler in travelers:
         date = timezone.now().date()
         random_city = random.choice(cities)
         travels.append(
-            Travels(city=random_city, user=user, ini_date=date, end_date=date)
+            Travels(city=random_city, traveler=traveler, ini_date=date, end_date=date)
         )
     Travels.objects.bulk_create(travels)
 
