@@ -29,6 +29,4 @@ ENV DATABASE_URL=postgres://username:password@db_host:5432/db_name
 
 EXPOSE 8000
 
-CMD ["python", "/app/FestPerk/manage.py", "migrate"]
-
-ENTRYPOINT ["python", "/app/FestPerk/manage.py", "runserver", "0.0.0.0:8000"]
+ENTRYPOINT ["bash", "input.sh"]
