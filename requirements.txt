@@ -4,3 +4,5 @@ django-cors-headers
 django-cors-middleware
 psycopg2-binary
 python-dotenv
+django-rest-authtoken
+django-crontab

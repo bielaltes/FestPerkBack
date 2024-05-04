@@ -148,5 +148,5 @@ REST_FRAMEWORK = {
 REGISTRATION_ENABLED = True
 
 CRONJOBS = [
-    ('*/5 * * * *', 'api.cron.cronfunction'),  # Executes every 5 minutes
+    ('*/1 * * * *', 'api.cron.cronfunction'),  # Executes every 5 minutes
 ]
