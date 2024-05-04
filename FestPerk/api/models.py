@@ -23,22 +23,31 @@ class City(models.Model):
 class Local(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
-    city = models.OneToOneField(City, on_delete=models.PROTECT)
+    city = models.ForeignKey(City, on_delete=models.PROTECT)
+
+    class Meta:
+        unique_together = ("name", "city")
 
 
 class Travels(models.Model):
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     city = models.ForeignKey(City, on_delete=models.PROTECT)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
     ini_date = models.DateField()
     end_date = models.DateField()
 
+    class Meta:
+        unique_together = ("user", "ini_date")
+
 
 class Party(models.Model):
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     local = models.ForeignKey(Local, on_delete=models.PROTECT)
     date = models.DateField()
 
 
 class Participant(models.Model):
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     party = models.ForeignKey(Party, on_delete=models.PROTECT)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
