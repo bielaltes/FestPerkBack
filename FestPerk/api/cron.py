@@ -1,8 +1,7 @@
 
-from django.contrib.auth.models import User
-
+from .models import City
 
 def cronfunction():
     print("hola")
-    user = User.objects.create(username="carles", password="miquel")
-    user.save()
+    citi = City.objects.create(name="Andorra la vella")
+    citi.save()
