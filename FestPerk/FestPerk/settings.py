@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure--kolb)xgw+-_tf&g$^$82^4q2kc*9!gr66*=x39jt-=+99=b9l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG') == 'True'
 
 ALLOWED_HOSTS = ['localhost', 'localhost:8000', 'http://127.0.0.1:8000/', '*']
 
@@ -48,6 +52,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE')
+CSRF_COOKIE_SECURE = os.getenv('CSRF_COOKIE_SECURE')
 
 ROOT_URLCONF = 'FestPerk.urls'
 
@@ -75,8 +82,12 @@ WSGI_APPLICATION = 'FestPerk.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.getenv('DB_ENGINE'),
+        'NAME': os.getenv('DB_NAME'), 
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'), 
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 
