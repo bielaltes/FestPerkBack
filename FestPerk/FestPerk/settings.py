@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure--kolb)xgw+-_tf&g$^$82^4q2kc*9!gr66*=x39jt-=+99=b9l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG') == 'True'
 
-ALLOWED_HOSTS = ['localhost', 'localhost:3000','localhost:8000', 'http://127.0.0.1:8000/', 'https://festperkback.onrender.com', 'festperkback.onrender.com']
+ALLOWED_HOSTS = ['*', 'localhost', 'localhost:3000','localhost:8000', 'http://127.0.0.1:8000/', 'https://festperkback.onrender.com', 'festperkback.onrender.com']
 
 CORS_ALLOWED_ORIGINS = [
     "localhost",
@@ -56,7 +56,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
