@@ -6,15 +6,17 @@ from .views import (
     ClubViewSet,
     PartyViewSet,
     ParticipantViewSet,
+    CreateTravelView
 )
 
 router = routers.DefaultRouter()
-router.register(r"travels", TravelViewSet)
-router.register(r"cities", CityViewSet)
-router.register(r"clubs", ClubViewSet)
-router.register(r"parties", PartyViewSet)
-router.register(r"participants", ParticipantViewSet)
+router.register(r"travels", TravelViewSet, basename="travels")
+router.register(r"cities", CityViewSet, basename="cities")
+router.register(r"clubs", ClubViewSet, basename="clubs")
+router.register(r"parties", PartyViewSet, basename="parties")
+router.register(r"participants", ParticipantViewSet, basename="participants")
 
 urlpatterns = [
     path("", include(router.urls)),
+    path('travels/new', CreateTravelView.as_view(), name='create_travel'),
 ]
