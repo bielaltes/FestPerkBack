@@ -1,0 +1,41 @@
+services:
+  - name: db_postgres
+    env:
+      - key: POSTGRES_USER
+        value: admin
+      - key: POSTGRES_PASSWORD
+        value: admin123
+      - key: POSTGRES_DB
+        value: festperk
+    image: postgres:alpine3.18
+    plan: starter
+    ports:
+      - 5432  # Expose default PostgreSQL port
+    type: docker
+    volume:
+      name: database_postgre_data
+      mountPath: /var/lib/postgresql/data
+
+  - name: backend_django
+    buildCommand: docker build -t festperk .
+    env: []
+    plan: starter
+    ports:
+      - 8000
+    startCommand: docker run -p 8000:8000 --env-file .env festperk
+    type: web
+    healthCheckPath: /
+    httpPort: 8000
+    network: festperknet
+    volumes:
+      - name: back_workdir
+        mountPath: /app
+
+networks:
+  - name: festperknet
+
+volumes:
+  - name: database_postgre_data
+    mountPath: /var/lib/postgresql/data
+  - name: back_workdir
+    mountPath: /app
