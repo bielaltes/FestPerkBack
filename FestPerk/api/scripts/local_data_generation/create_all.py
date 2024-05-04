@@ -1,10 +1,10 @@
 def create_all():
-    from api.scripts.local_data_generation.create_users import create_users
+    from FestPerk.api.scripts.local_data_generation.create_travellers import create_travellers
     from api.scripts.local_data_generation.create_cities import create_cities
     from api.scripts.local_data_generation.create_locals import create_locals
     from api.scripts.local_data_generation.create_travels import create_travels
 
-    create_users()
+    create_travellers()
     create_cities()
     create_travels()
     create_locals()
