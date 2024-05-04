@@ -2,6 +2,7 @@ from rest_framework.response import Response
 from rest_framework import viewsets, status
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
+from django.views.decorators.csrf import csrf_exempt
 from .models import Travel, City, Club, Party, Participant, Traveler
 from .serializers import (
     TravelSerializer,
@@ -13,7 +14,7 @@ from .serializers import (
 
 from rest_framework.permissions import IsAuthenticated
 
-
+@csrf_exempt
 class TravelViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = TravelSerializer
