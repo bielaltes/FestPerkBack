@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 		'rest_framework',
 		'api',
+        'rest_authtoken',
+        'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +138,15 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_authtoken.auth.AuthTokenAuthentication',
+    ),
+}
+
+REGISTRATION_ENABLED = True
+
+CRONJOBS = [
+    ('*/5 * * * *', 'api.cron.cronfunction'),  # Executes every 5 minutes
+]
