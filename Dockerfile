@@ -11,7 +11,7 @@ RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
 RUN apt update
-RUN apt-get install cron -y && touch /var/log/cron.log77777777
+RUN apt-get install cron -y && touch /var/log/cron.log
 
 RUN pip install psycopg2-binary
 
