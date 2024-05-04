@@ -29,4 +29,4 @@ ENV DATABASE_URL=postgres://username:password@db_host:5432/db_name
 
 EXPOSE 8000
 
-ENTRYPOINT ["bash", "input.sh"]
+CMD ["bash", "input.sh"]
