@@ -1,4 +1,5 @@
 import uuid
+from collections import defaultdict
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -19,17 +20,33 @@ class Traveler(models.Model):
 class City(models.Model):
     name = models.CharField(primary_key=True, max_length=20)
 
+    class Meta:
+        verbose_name_plural = "Cities"
 
-class Local(models.Model):
+
+class ClubManager(models.Manager):
+    def get_clubs_by_city(self):
+        clubs = Club.objects.all()
+        clubs_by_city = defaultdict(list)
+
+        for club in clubs:
+            clubs_by_city[club.city.name].append(club)
+
+        return clubs_by_city
+
+
+class Club(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
     city = models.ForeignKey(City, on_delete=models.PROTECT)
+
+    objects = ClubManager()
 
     class Meta:
         unique_together = ("name", "city")
 
 
-class Travels(models.Model):
+class Travel(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     city = models.ForeignKey(City, on_delete=models.PROTECT)
     traveler = models.ForeignKey(Traveler, on_delete=models.CASCADE)
@@ -42,8 +59,11 @@ class Travels(models.Model):
 
 class Party(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    local = models.ForeignKey(Local, on_delete=models.PROTECT)
+    club = models.ForeignKey(Club, on_delete=models.PROTECT)
     date = models.DateField()
+
+    class Meta:
+        verbose_name_plural = "Parties"
 
 
 class Participant(models.Model):

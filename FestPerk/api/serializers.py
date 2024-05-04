@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from .models import Travels, City, Local, Party, Participant
+from .models import Travel, City, Club, Party, Participant
 
 
-class TravelsSerializer(serializers.ModelSerializer):
+class TravelSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Travels
-        fields = ["city", "traveler", "ini_date", "end_date"]
+        model = Travel
+        fields = ["uuid", "city", "traveler", "ini_date", "end_date"]
 
 
 class CitySerializer(serializers.ModelSerializer):
@@ -14,19 +14,19 @@ class CitySerializer(serializers.ModelSerializer):
         fields = ["name"]
 
 
-class LocalSerializer(serializers.ModelSerializer):
+class ClubSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Local
-        fields = ["name", "city"]
+        model = Club
+        fields = ["uuid", "name", "city"]
 
 
 class PartySerializer(serializers.ModelSerializer):
     class Meta:
         model = Party
-        fields = ["local", "date"]
+        fields = ["uuid", "club", "date"]
 
 
 class ParticipantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Participant
-        fields = ["party", "traveler"]
+        fields = ["uuid", "party", "traveler"]

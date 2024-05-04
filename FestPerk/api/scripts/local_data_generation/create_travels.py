@@ -1,7 +1,7 @@
 def create_travels():
     import random
     from django.utils import timezone
-    from api.models import City, Traveler, Travels
+    from api.models import City, Traveler, Travel
 
     cities = City.objects.all()
     travelers = Traveler.objects.all()
@@ -10,9 +10,9 @@ def create_travels():
         date = timezone.now().date()
         random_city = random.choice(cities)
         travels.append(
-            Travels(city=random_city, traveler=traveler, ini_date=date, end_date=date)
+            Travel(city=random_city, traveler=traveler, ini_date=date, end_date=date)
         )
-    Travels.objects.bulk_create(travels)
+    Travel.objects.bulk_create(travels)
 
 
 if __name__ == "__main__":
