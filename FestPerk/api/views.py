@@ -51,6 +51,7 @@ class TravelViewSet(viewsets.ModelViewSet):
 class CreateTravelView(APIView):
     permission_classes = [IsAuthenticated]
 
+    @csrf_exempt
     def post(self, request, format=None):
         body = request.data
         required_fields = ["city", "ini_date", "end_date"]
