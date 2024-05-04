@@ -17,16 +17,16 @@ class CitySerializer(serializers.ModelSerializer):
 class LocalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Local
-        fields = ["uuid", "name", "city"]
+        fields = ["name", "city"]
 
 
 class PartySerializer(serializers.ModelSerializer):
     class Meta:
         model = Party
-        fields = ["id", "local", "date"]
+        fields = ["local", "date"]
 
 
 class ParticipantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Participant
-        fields = ["id", "party", "user"]
+        fields = ["party", "user"]
