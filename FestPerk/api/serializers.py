@@ -29,7 +29,7 @@ class ParticipantSerializer(serializers.ModelSerializer):
     party_uuid = serializers.UUIDField(source='party.uuid', read_only=True)
     club_uuid = serializers.UUIDField(source='party.club.uuid', read_only=True)
     club_name = serializers.CharField(source='party.club.name', read_only=True)
-    club_city = serializers.CharField(source='party.club.city', read_only=True)
+    club_city = serializers.CharField(source='party.club.city.name', read_only=True)
     party_date = serializers.DateField(source='party.date', read_only=True)
     participant_uuid = serializers.UUIDField(source='uuid', read_only=True)
     traveler_uuid = serializers.UUIDField(source='traveler.uuid', read_only=True)
