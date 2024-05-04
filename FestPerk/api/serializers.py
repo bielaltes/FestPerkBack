@@ -5,7 +5,7 @@ from .models import Travels, City, Local, Party, Participant
 class TravelsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Travels
-        fields = ["city", "user", "ini_date", "end_date"]
+        fields = ["city", "traveler", "ini_date", "end_date"]
 
 
 class CitySerializer(serializers.ModelSerializer):
@@ -29,4 +29,4 @@ class PartySerializer(serializers.ModelSerializer):
 class ParticipantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Participant
-        fields = ["party", "user"]
+        fields = ["party", "traveler"]

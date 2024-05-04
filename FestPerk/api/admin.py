@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Traveller, City, Local, Travels, Party, Participant
+from .models import Traveler, City, Local, Travels, Party, Participant
 
-admin.site.register(Traveller)
+admin.site.register(Traveler)
 admin.site.register(City)
 admin.site.register(Local)
 admin.site.register(Travels)
