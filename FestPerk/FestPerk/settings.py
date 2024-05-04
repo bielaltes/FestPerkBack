@@ -58,10 +58,10 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'FestPerk.cors_middlewere.DisableCorsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'FestPerk.cors_middlewere.DisableCorsMiddleware',
 ]
 
 SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE')
