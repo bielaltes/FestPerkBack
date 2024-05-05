@@ -6,7 +6,9 @@ from .views import (
     ClubViewSet,
     PartyViewSet,
     ParticipantViewSet,
-    CreateTravelView
+    CreateTravelView,
+    compute_new_day,
+    erase_day,
 )
 
 router = routers.DefaultRouter()
@@ -19,4 +21,6 @@ router.register(r"participants", ParticipantViewSet, basename="participants")
 urlpatterns = [
     path("", include(router.urls)),
     path('travels/new', CreateTravelView.as_view(), name='create_travel'),
+    path('compute_day', compute_new_day, name="compute_new_day"),
+    path('erase_day', erase_day, name="erase_day"),
 ]
